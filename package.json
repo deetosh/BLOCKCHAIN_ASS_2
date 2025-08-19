@@ -6,7 +6,8 @@
     "server": "cd server && npm run dev",
     "client": "cd client && npm run dev",
     "build": "cd server && npm run build && cd ../client && npm run build",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "setup": "npm i && cd server && npm i && cd ../client && npm i && cd .."
   },
   "devDependencies": {
     "concurrently": "^9.2.0"
