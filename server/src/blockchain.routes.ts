@@ -7,7 +7,6 @@ const blockchain = new Blockchain(5);
 // get the entire blockchain
 router.get("/chain", (req, res) => {
   try {
-    
     res.status(200).json({
       error: false,
       data: blockchain.toJSON(),
@@ -50,38 +49,31 @@ router.post("/mine", (req, res) => {
   }
 });
 
-// Validate current blockchain
-router.get("/validate", (req, res) => {
+// Upload and validate a blockchain file
+router.post("/upload-validate", (req, res) => {
   try {
-    const isValid = blockchain.isChainValid();
+    const { chainData } = req.body;
+
+    if (!chainData || !Array.isArray(chainData)) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid chain data format",
+      });
+    }
+
+    const validationResult = blockchain.validateUploadedChain(chainData);
 
     res.json({
       error: false,
-      isValid,
-      message: isValid ? "Blockchain is valid" : "Blockchain is invalid",
+      ...validationResult,
+      message: validationResult.isValid
+        ? "Uploaded blockchain is valid"
+        : `Blockchain is invalid starting from block ${validationResult.invalidBlockIndex}`,
     });
-  } catch (error) {
-    return res.status(500).json({
-      error: true,
-      message: "Failed to validate blockchain",
-    });
-  }
-});
-
-// Download blockchain as JSON
-router.get("/download", (req, res) => {
-  try {
-    const chainData = blockchain.toJSON();
-    res.setHeader("Content-Type", "application/json");
-    res.setHeader(
-      "Content-Disposition",
-      'attachment; filename="blockchain.json"'
-    );
-    res.json(chainData);
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: "Failed to download blockchain",
+      error: "Failed to validate uploaded blockchain",
     });
   }
 });

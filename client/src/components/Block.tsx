@@ -7,10 +7,12 @@ interface BlockProps {
   isInvalid?: boolean;
 }
 const Block: React.FC<BlockProps> = ({ block, isInvalid = false }) => {
+  // formatting the timestamp
   const formatTimestamp = (timestamp: number) => {
     return new Date(timestamp).toLocaleString();
   };
-  const truncateHash = (hash: string, length: number = 16) => {
+  // showing only the first 24 characters of the hash
+  const truncateHash = (hash: string, length: number = 24) => {
     return hash.length > length ? `${hash.substring(0, length)}...` : hash;
   };
   return (

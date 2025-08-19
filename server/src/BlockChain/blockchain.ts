@@ -45,23 +45,6 @@ export class Blockchain implements IBlockchain {
     return newBlock;
   }
 
-  // Validate the entire blockchain
-  public isChainValid(): boolean {
-    for (let i = 1; i < this.chain.length; i++) {
-      const currentBlock = this.chain[i];
-      const prevBlock = this.chain[i - 1];
-      // Verify current block's hash
-      if (currentBlock.hash !== currentBlock.calculateHash()) {
-        return false;
-      }
-      // Verify connection to previous block
-      if (currentBlock.prevHash !== prevBlock.hash) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   // Validate the uploaded chain 
   public validateUploadedChain(chainData: IBlock[]): {
     isValid: boolean;

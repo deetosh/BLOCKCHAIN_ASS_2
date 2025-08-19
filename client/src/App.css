@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 }
 
 body {
@@ -10,39 +12,16 @@ body {
   height: 100dvh;
   width: 100dvw;
   color: #333;
-  display: flex;
-  flex-direction: column;
 }
 
 .app {
-  margin: 0;
   padding: 20px;
   position: relative;
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.app-header {
-  text-align: center;
-  margin-bottom: 10px;
-  color: white;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 15px;
-}
-
-.app-header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.app-header p {
-  font-size: 1.2rem;
-  color: #d0bf69;
+  justify-content: center;
 }
 
 .loading {
@@ -66,6 +45,8 @@ body {
   position: absolute;
   text-align: center;
   box-sizing: border-box;
+  height: fit-content;
+  width: fit-content;
 }
 
 .message.success {
@@ -93,25 +74,24 @@ body {
   width: 100%;
 }
 
-.controls-section {
+.mining-controls {
   background: rgba(255, 255, 255, 0.15);
-  padding: 15px;
+  padding: 15px 10px;
   border-radius: 15px;
   width: 20%;
   height: 100%;
-}
-
-.mining-controls {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .mining-controls h2 {
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   border-bottom: 3px solid #d7b266;
   padding-bottom: 10px;
+  height: fit-content;
+  text-align: center;
 }
 
 .mining-controls input {
@@ -129,6 +109,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 9px;
+  height: fit-content;
 }
 
 .control-block p {
@@ -193,26 +174,30 @@ button:disabled {
   background: linear-gradient(45deg, #cdb48a, #b48b33);
 }
 
-.blockchain-section {
+.blockchain-container {
   width: 78%;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 15px;
-  padding: 30px;
+  padding: 15px;
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap:20px;
 }
 
 .blockchain-container h2 {
   color: #ffffff;
-  margin-bottom: 25px;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   border-bottom: 3px solid #d7b266;
   padding-bottom: 10px;
   text-align: center;
+  height: fit-content;
 }
 
 .blockchain {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 24px;
   width: 100%;
   overflow-x: auto;
 }
@@ -225,12 +210,16 @@ button:disabled {
   transition: all 0.3s ease;
   width:300px;
   min-width: 300px;
+  height: fit-content;
+  z-index: 99;
 }
 
+.block:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+}
 
 .block.invalid {
-  border-color: #dc3545;
-  background: linear-gradient(135deg, #fff5f5, #ffe6e6);
+  background: linear-gradient(135deg, #e9b0b0, #f4dfdf);
   /* animation: shake 0.5s ease-in-out; */
 }
 
@@ -257,6 +246,7 @@ button:disabled {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .block-content {
@@ -313,4 +303,12 @@ button:disabled {
 .field-body{
   text-align: right;
   flex:1;
+  height: fit-content;
+}
+
+.uploaded-indicator{
+  color: rgb(215, 208, 208);
+  font-size: 1.2rem;
+  height: fit-content;
+  width: fit-content;
 }
