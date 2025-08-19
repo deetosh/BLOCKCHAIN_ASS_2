@@ -39,7 +39,7 @@ export class Block implements IBlock {
 
   // Calculate the hash of the block
   public calculateHash(): string {
-    const blockString = `${this.index}${this.timestamp}${this.data}${this.prevHash}${this.nonce}`;
+    const blockString = `${this.index}${this.timestamp}${this.data}${this.nonce}`;
     return calculateSHA256(blockString);
   }
 

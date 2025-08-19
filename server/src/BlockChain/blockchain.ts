@@ -39,8 +39,8 @@ export class Blockchain implements IBlockchain {
     );
 
     console.log(`Mining block ${newBlock.index}...`);
-    newBlock.mineBlock(this.difficulty);    // Mine the block
-    this.chain.push(newBlock);  // Add the new block to the chain
+    newBlock.mineBlock(this.difficulty); // Mine the block
+    this.chain.push(newBlock); // Add the new block to the chain
 
     return newBlock;
   }
@@ -60,6 +60,47 @@ export class Blockchain implements IBlockchain {
       }
     }
     return true;
+  }
+
+  // Validate the uploaded chain 
+  public validateUploadedChain(chainData: IBlock[]): {
+    isValid: boolean;
+    invalidBlockIndex?: number;
+  } {
+    if (chainData.length === 0) {
+      return { isValid: false };
+    }
+
+    // Recreate blockchain from uploaded data
+    const uploadedChain = chainData.map((blockData) => {
+      const block = new Block(
+        blockData.index,
+        blockData.timestamp,
+        blockData.data,
+        blockData.prevHash
+      );
+      block.hash = blockData.hash;
+      block.nonce = blockData.nonce;
+      return block;
+    });
+
+    // Validate the uploaded chain
+    for (let i = 1; i < uploadedChain.length; i++) {
+      const currentBlock = uploadedChain[i];
+      const prevBlock = uploadedChain[i - 1];
+
+      // Check if current block's hash is valid
+      if (currentBlock.hash !== currentBlock.calculateHash()) {
+        return { isValid: false, invalidBlockIndex: i };
+      }
+
+      // Check if it properly links to previous block
+      if (currentBlock.prevHash !== prevBlock.hash) {
+        return { isValid: false, invalidBlockIndex: i };
+      }
+    }
+
+    return { isValid: true };
   }
 
   // Convert the blockchain to a JSON representation

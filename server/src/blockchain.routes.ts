@@ -2,11 +2,12 @@ import { Router } from "express";
 import { Blockchain } from "./BlockChain/blockchain";
 
 const router = Router();
-const blockchain = new Blockchain(2);
+const blockchain = new Blockchain(5);
 
 // get the entire blockchain
 router.get("/chain", (req, res) => {
   try {
+    
     res.status(200).json({
       error: false,
       data: blockchain.toJSON(),
@@ -44,7 +45,7 @@ router.post("/mine", (req, res) => {
   } catch (error) {
     return res.status(500).json({
       error: true,
-      message: "Failed to mine block"
+      message: "Failed to mine block",
     });
   }
 });
@@ -63,6 +64,24 @@ router.get("/validate", (req, res) => {
     return res.status(500).json({
       error: true,
       message: "Failed to validate blockchain",
+    });
+  }
+});
+
+// Download blockchain as JSON
+router.get("/download", (req, res) => {
+  try {
+    const chainData = blockchain.toJSON();
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader(
+      "Content-Disposition",
+      'attachment; filename="blockchain.json"'
+    );
+    res.json(chainData);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: "Failed to download blockchain",
     });
   }
 });
