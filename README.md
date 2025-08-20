@@ -14,5 +14,4 @@
     - go to the project directory
     - npm run setup (to install all the node modules)
     - npm run dev (to start the server and client)
-
-### 3. Go on this link to open the client : http://localhost:5173/ 
+    - Go on this link to open the client : http://localhost:5173/  
