@@ -1,4 +1,4 @@
-# BLOCKCHAIN_ASS_2
+# BLOCKCHAIN ASSIGNMENT 2
 
 ### Team Members
 1. Deetosh Kumar Kuila - 22CS30021
