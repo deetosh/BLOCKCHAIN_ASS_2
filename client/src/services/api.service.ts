@@ -19,8 +19,8 @@ export class BlockchainAPI {
   }
 
   // mine a new block
-  static async mineBlock(data: string): Promise<any> {
-    const response = await api.post("/mine", { data });
+  static async mineBlock(): Promise<any> {
+    const response = await api.post("/mine");
     return response.data;
   }
 

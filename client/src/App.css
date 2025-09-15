@@ -38,7 +38,7 @@ body {
   border-radius: 8px;
   font-weight: 500;
   animation: slideIn 0.3s ease-out;
-  z-index: 999;
+  /* z-index: 99; */
   top: 100px;
   max-width: 500px;
   word-break: normal;
@@ -211,7 +211,7 @@ button:disabled {
   width:300px;
   min-width: 300px;
   height: fit-content;
-  z-index: 99;
+  /* z-index: 99; */
 }
 
 .block:hover {
@@ -311,4 +311,67 @@ button:disabled {
   font-size: 1.2rem;
   height: fit-content;
   width: fit-content;
+}
+
+/* transactions */
+
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-content {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  height: fit-content;
+  color: black;
+  font-size: 22px;
+  
+}
+
+.transaction-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 16px;
+  background: #fafafa;
+  height: fit-content;
+}
+
+.tx-columns {
+  display: flex;
+  gap: 20px;
+}
+
+.tx-col {
+  flex: 1;
+}
+
+.tx-col h4 {
+  margin-bottom: 8px;
+}
+
+.tx-item{
+  background-color: #b4b0b070;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
 }

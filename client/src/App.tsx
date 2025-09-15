@@ -38,12 +38,12 @@ function App() {
   };
 
   // mining a new block with user-provided data
-  const mineBlock = async (data: string) => {
+  const mineBlock = async () => {
     try {
       setMining(true);
       showMessage('info', 'Mining block... This may take a moment.');
       
-      const response = await BlockchainAPI.mineBlock(data);
+      const response = await BlockchainAPI.mineBlock();
       
       if (!response.error) {
         showMessage('success', `Block mined successfully! Chain now has ${response.chainLength} blocks.`);

@@ -25,7 +25,7 @@ const Blockchain: React.FC<BlockchainProps> = ({
       <div className="blockchain">
         {blocks.map((block, index) => (
           <Block
-            key={`block-${block.index}-${block.timestamp}`}
+            key={`block-${block.header.index}-${block.header.timestamp}`}
             block={block}
             isInvalid={
               invalidBlockIndex !== undefined && index >= invalidBlockIndex

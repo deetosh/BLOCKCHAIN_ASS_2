@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 interface MiningControlsProps {
-  onMine: (data: string) => void;
+  onMine: () => void;
   onDownload: () => void;
   onUpload: (file: File) => void;
   isMining: boolean;
@@ -13,10 +13,10 @@ const MiningControls: React.FC<MiningControlsProps> = ({
 }) => {
   const [blockData, setBlockData] = useState("");
   const handleMine = () => {
-    if (blockData.trim()) {
-      onMine(blockData.trim());
+    // if (blockData.trim()) {
+      onMine();
       setBlockData("");
-    }
+    // }
   };
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -31,16 +31,16 @@ const MiningControls: React.FC<MiningControlsProps> = ({
       <h2>Controls</h2>
       <div className="control-block">
         <p>Add and mine a new block</p>
-        <input
+        {/* <input
           type="text"
           placeholder="Enter block data (e.g., transaction data)"
           value={blockData}
           onChange={(e) => setBlockData(e.target.value)}
           disabled={isMining}
-        />
+        /> */}
         <button
           onClick={handleMine}
-          disabled={isMining || !blockData.trim()}
+          // disabled={isMining || !blockData.trim()}
           className="mine-btn"
         >
           {isMining ? "Mining..." : "Mine Block"}
